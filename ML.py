@@ -5,7 +5,6 @@ from PIL import Image
 # load the photograph
 
 def detect(pic):
-    #im = Image.open('static/uploads/' + pic)
     pixels = pyplot.imread('static/uploads/' + pic)
     # create the detector, using default weights
     detector = MTCNN()
