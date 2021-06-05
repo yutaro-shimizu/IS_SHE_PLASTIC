@@ -17,14 +17,17 @@ def index():
         return redirect(url_for('uploaded',filename=filename))
     return render_template('index.html')
 
-@app.route('/static/uploads/<path:filename>')
+@app.route('/display/<path:filename>')
 def uploaded(filename):
     #call ML.py and get result
     result = detect(filename)
-    #file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     if result:
-        return render_template('success.html')
+        return render_template('success.html', user_image=filename)
     return render_template('fail.html')
+
+@app.route('/test')
+def test():
+    return render_template('success.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
