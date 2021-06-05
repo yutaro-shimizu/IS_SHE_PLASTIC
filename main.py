@@ -21,8 +21,12 @@ def index():
 def uploaded(filename):
     #call ML.py and get result
     result = detect(filename)
+    print(result)
     if result:
-        return render_template('success.html', user_image=filename)
+        nose = result[0].get('keypoints').get('nose')
+        print(nose)
+        if nose:
+            return render_template('success.html', user_image=filename, nose=nose)
     return render_template('fail.html')
 
 @app.route('/test')
